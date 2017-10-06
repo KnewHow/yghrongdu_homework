@@ -8,13 +8,25 @@
 </head>
 <script type="text/javascript" src="js/base64.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript" src="js/sha1.js"></script>
 <script type="text/javascript">
 	
 	function loginFunction(){
 		var username = document.getElementById("username").value
 		var password = document.getElementById("password").value
-		var b = new Base64();  
-        password = b.encode(password);  
+		//使用base64加密
+		/* var b = new Base64();  
+        password = b.encode(password);  */ 
+        
+        //使用MD5进行加密
+        /* password = hex_md5(password); */
+        
+        password = hex_sha1(password);
+        
+        alert(password);
+        
+        
         
         $.ajax({
             type: "post",
@@ -31,7 +43,7 @@
 </script>
 <body>
 	用户名:<input id="username" type="text" name="username"/><br/>
-	密    码:<input id="password" type="text" name="password"/><br/>
+	密    码:<input id="password" type="password" name="password"/><br/>
 	<input type="button" value="登录" onclick="loginFunction()"/>
 </body>
 </html>
